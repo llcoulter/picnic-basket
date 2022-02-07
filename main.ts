@@ -1,3 +1,15 @@
+function checkGuest (text: string) {
+    match = 0
+    for (let index = 0; index <= 4; index++) {
+        if (text == foodNames[index]) {
+            match += 1
+        }
+        pause(500)
+        game.splash(match)
+    }
+}
+let match = 0
+let foodNames: string[] = []
 game.splash("remember what you see")
 scene.setBackgroundImage(img`
     2222211111222222111112222221111122222211111222222111112222221111122222211111222222111112222221111122222211111222222111112222221111122222211111222222111112222222
@@ -250,7 +262,7 @@ img`
     . . . . . . . . . c c c c c . . 
     `
 ]
-let foodNames = [
+foodNames = [
 "apple",
 "cake",
 "strawberry",
@@ -280,18 +292,6 @@ picnicFood.setImage(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `)
-game.splash("What was in the picnic basket?")
-let question = game.askForString("")
-if (question == "apple") {
-    game.over(true)
-} else if (question == "cake") {
-    game.over(true)
-} else if (question == "strawberry") {
-    game.over(true)
-} else if (question == "donut") {
-    game.over(true)
-} else if (question == "cherry") {
-    game.over(true)
-} else {
-    game.over(false)
-}
+info.setScore(0)
+let question = game.askForString("What was in the Basket")
+checkGuest(question)
